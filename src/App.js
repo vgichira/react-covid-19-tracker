@@ -7,6 +7,7 @@ class App extends Component {
 
     state = {
         data:{},
+        country:""
     }
 
     async componentDidMount(){
@@ -15,10 +16,14 @@ class App extends Component {
         this.setState({data:fetchedData})
     }
 
+    handleCountryChange = async (country) => {
+        console.log(await fetchData(country))
+    }
+
     render() {
         return (
             <div className={styles.container}>
-                <CountryPicker/>
+                <CountryPicker onCountryChange={this.handleCountryChange}/>
                 <Cards data={this.state.data}/>
                 <Chart/>
             </div>
